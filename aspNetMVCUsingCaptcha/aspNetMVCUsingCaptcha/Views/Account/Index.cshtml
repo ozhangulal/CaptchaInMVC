@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using CaptchaMvc.HtmlHelpers;
+@model aspNetMVCUsingCaptcha.Models.Account
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+
+    @using (Html.BeginForm("Save", "Account", FormMethod.Post))
+    {
+        <div class="col-lg-5">
+            <table class="table table-hover" border="1">
+                <tr>
+                    <td>FullName</td>
+                    <td><div class="col-lg-5">@Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })</div></td>
+                </tr>
+                <tr>
+                    <td>UserName</td>
+                    <td><div class="col-lg-5">@Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })</div></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><div class="col-lg-5">@Html.PasswordFor(model => model.Password, new { @class = "form-control" })</div></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>@Html.Captcha(5) @ViewBag.error</td> 
+                </tr>
+                @*<tr>
+            <td>&nbsp;</td>
+            <td>@Html.MathCaptcha()</td>
+        </tr>*@
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input type="submit" value="Save" class="btn btn-success" /></td>
+                </tr>
+            </table>
+        </div>
+    }
+
+</body>
+</html>
